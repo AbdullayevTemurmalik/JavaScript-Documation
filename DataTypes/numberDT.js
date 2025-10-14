@@ -124,4 +124,15 @@ console.log(parseFloat("12.5em"));//12.5
 console.log( parseInt('0xff', 16) ); // 255
 console.log( parseInt('ff', 16) ); // 255, без 0x тоже работает
 
- 
+//The difference between i++ and ++i is that 
+//i++ firstly retunrns the normal value and the adds one
+//++i returns the the value that was added to one
+//using ++i is better because it doesnt need extra memory for saving value
+//there is no difference in for loop but we can see the difference here:
+let i = 0;
+let a = i++;
+console.log(a, i); // 0 1
+
+let j = 0;
+let b = ++j;
+console.log(b, j); // 1 1

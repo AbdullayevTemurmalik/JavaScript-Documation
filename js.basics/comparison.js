@@ -128,7 +128,7 @@ console.log(null > 0); //false
 // however when we say that null is higher or equal to 0 the result is true
 console.log(null >= 0); //true
 // so that is weird null == 0 is false and null >= 0 is true, but there is a reson for that.
-// Thats because == and < > >= <= work differently < > >= <=  converts null to a number while == doesnt
+// Thats because == and < > >= <= work differently, < > >= <=  converts null to a number while == doesnt
 // comparing undefined to a zero
 console.log(undefined > 0); //false
 //or
