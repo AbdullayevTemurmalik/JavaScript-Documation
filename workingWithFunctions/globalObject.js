@@ -16,7 +16,7 @@ console.log(window.hello);//enck
 window.currentUser = {
   name: "John"
 };
-//but this is preferablegit a not to use global variables becasue the code will becaome easier and for testing it becaomes much easier
+//but this is preferable not to use global variables becasue the code will becaome easier and for testing it becomes much easier
 
 //We can check if the browser has the objects that we are using
 //for exampe checking if browser has Promise
