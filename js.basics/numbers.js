@@ -14,7 +14,7 @@ console.log(1/0); //=> this is going to be infinity
 
 // to create a bigint number we add n to the end
 console.log(typeof 48348384834902n); //=> bigint
-// to covert  variable into boolean we do Boolean()
+// to convert  variable into a boolean we do Boolean()
 const sum = 20
 console.log(typeof sum);//=> number
 console.log(typeof Boolean(sum));//=>boolean

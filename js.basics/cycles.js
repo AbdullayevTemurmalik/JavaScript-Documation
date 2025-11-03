@@ -12,10 +12,10 @@ while(i < 10){
 let j =5
 
 do{
-  console.log(j);
   j++
+  console.log(j);
 }while (j<5)
-  console.log("the end of the cycle ");//=>5
+  console.log("the end of the cycle ");//=>6
 
   // however in normal cycle it would be nothing as 5<5 is never true
   let hi = 1
@@ -30,7 +30,7 @@ do{
     console.log(i);
     
   }
-  // break is used to stop a loop working 
+  // break is used to stop a loop from working 
   for(let i=8;i<50;i++){
    if(i % 7 ==0){
     console.log("found the number:"+" "+i);

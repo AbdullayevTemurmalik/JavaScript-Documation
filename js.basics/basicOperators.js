@@ -17,4 +17,4 @@ console.log(+"12" + +"3");//=> this is number 15 as i said before unary is faste
 // LEFT SHIFT(левый сдвиг) ( << )
 // RIGHT SHIFT(правый сдвиг) ( >> )
 // ZERO-FILL RIGHT SHIFT(правый сдвиг с заполнением нулями) ( >>> )
-  
+

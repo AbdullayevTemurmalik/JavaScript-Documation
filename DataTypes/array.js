@@ -22,7 +22,7 @@ console.log(arr.at(-1));//5 (last element)
 // Заполнение массива в обратном порядке, например: arr[1000], arr[999] и т.д.
 
 
-// push is faster then unshift, and it is preferable to use shift more
+// push is faster then unshift, and it is preferable to use push more
 // when we use unshift:
 //it finds out and adds the element with to [0]
 //moves all the elemnts after [0] to one more index
@@ -69,6 +69,7 @@ let change = [1,2,3,4,5,6]
 console.log(change.length);//6
 change.length = 8
 console.log(change.length);//8
+//now change is =>  [ 1, 2, 3, 4, 5, 6, null, null ]
 //2) we can decrease the length
 let decrease = [1,2,3,4,5,6]
 console.log(`it looks like this:${decrease} and its length is: ${decrease.length}`);
