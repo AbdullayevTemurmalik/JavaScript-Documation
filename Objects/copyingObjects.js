@@ -71,6 +71,11 @@ let e = {};
 
 console.log( w == e ); // false
 
+let cop = {
+  name:samir,
+  age:20
+}
+console.log(cop[1]);
 
 
 

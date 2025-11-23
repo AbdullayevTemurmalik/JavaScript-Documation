@@ -18,10 +18,10 @@ f();
 
 //This is called context name
 
-//Length=> findsout the length
+//Length=> finds out the length
 console.log(hello.length);//0
 //we need length for introseption
-//Introseption is the ability to request the tupe or the structure of the object
+//Introseption is the ability to request the type or the structure of the object
 /*
 function ask(question, ...handlers) {
   let isYes = confirm(question);
@@ -101,5 +101,5 @@ welcome(); // Ошибка, вложенный вызов sayHi больше н�
 /*
 1)Do not litter the global lexical Environment, because NFE works only inside of itself and we cannot get the access to it
 2)Doesnt have the hoisting, it may be both good and bad but as hoistin makes the code hard to read NFE is better
-3)We can save it a variable, we can do almost whatever to the variable and NFE will be still functionnig
+3)We can save it as a variable, we can do almost whatever to the variable and NFE will be still functionnig
 */
