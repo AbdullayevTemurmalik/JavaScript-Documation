@@ -7,7 +7,7 @@ console.log(5 + "5") //=> 55 in string
 // false = 0
 // true = 1
 console.log(true + null);//=> 1 because true=1;null =0
-console.log("" - 3);//=> the answer is -3 in number
+console.log("" - 3);//=> the answer is -3 in number because - cannot work with strings and it makes it number so it lloks like this: Number("") - Number(3) == 0 - 3
 console.log("" + 3);//=> string three
 console.log("" * 3) // => 0
 // when we do Number() spaces are being ommited

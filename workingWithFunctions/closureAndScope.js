@@ -20,7 +20,7 @@ mainFunction("samir","qodirov")
 //My name is samir
 //my saurname is qodirov
 
-//A nested function can be also returned nd taken as a variable
+//A nested function can be also returned and taken as a variable
 function counter() {
   let count = 0
   return function(){
