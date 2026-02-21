@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////Arrow function////////////////////////////////////////////////////
-// arrow function is jyst a shorter version of a function 
+// arrow function is just a shorter version of a function 
 // if it is declaration
 function sum(a,b) {
   console.log(a+b);

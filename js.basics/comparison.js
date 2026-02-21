@@ -115,7 +115,7 @@ console.log("002" > 1); //true as technically 002 in number is 2
 // however if the converted string into a number is NaN for example "abc" or "hello" the result is always false
 console.log("sam" < 1000); //false
 console.log("sam" > 1000); // also false
-// when we compare undefined with  null in strict comparison the result is false
+// when we compare undefined with null in strict comparison the result is false
 console.log(undefined === null); //false
 //however in simple it is true
 console.log(undefined == null); //true
@@ -136,7 +136,7 @@ console.log(undefined < 0); //false
 // so that is logical because < > sign converts to a number as i said before, undefined  is NaN so any comprison with NaN is false
 // however undefined == 0 has to be true? No
 // undefined is always false unless it is compare to a null
-// i didnt mention that if we compare string "12" and "2" that answer will be  true is that weird? yes because
+// if we compare string "12" and "2" that answer will be  true is that weird? yes because
 // < > convert items into a number when it is compared to a number but "12" < "2" are still string so we compare first symbols by the table of index there "1" is smaller than "2"
 console.log("12" < "2"); //true
 // however "12" < 2 is false because 12 is converted into a number
