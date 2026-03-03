@@ -187,4 +187,3 @@ showMenu(options3);
 //to make all value to be obj by default we do:
 //function showMenu({ title = "Menu", width = 100, height = 200 } = {})
 
- 
