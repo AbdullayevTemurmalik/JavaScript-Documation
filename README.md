@@ -1,1 +1,1 @@
-Ushbu Fayl da Sizlar JavaScriptning 
+Ushbu Fayl da Sizlar JavaScriptning Hamma 
