@@ -1,1 +1,1 @@
-Ushbu Fayl da Sizlar JavaScriptning Hamma Mavzularini Documentationlarini korishingiz ishlatishingiz va foydalanishingiz 
+Ushbu Fayl da Sizlar JavaScriptning Hamma Mavzularini Documentationlarini korishingiz ishlatishingiz va foydalanishingiz Mumkun
