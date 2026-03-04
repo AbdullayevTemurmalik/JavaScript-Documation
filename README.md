@@ -2,3 +2,4 @@ Ushbu faylda siz JavaScript’ning barcha mavzulari bo‘yicha dokumentatsiyalar
 
 MUHIM ESLATMA !!!!!
 
+Buning uchun sizga faqat ingliz tilini bilish kifoya.
