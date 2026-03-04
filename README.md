@@ -1,1 +1,1 @@
-Ushbu Fayl da 
+Ushbu Fayl da Sizlar 
