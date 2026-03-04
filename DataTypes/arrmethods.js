@@ -1,101 +1,97 @@
-/////////////////////////////////////////////////Array methods///////////////////////////////////////////////////////
-//deleting
-// As arrays are the objects we can try delete obj.key
+///////////////////////////////////////////////// Array methods ///////////////////////////////////////////////////////
+
+// Deleting (O'chirish)
+// Arraylar aslida Object bo'lgani uchun biz "delete obj.key" usulini qo'llab ko'rishimiz mumkin:
 let arr = [1, 2, 3, 4, 5];
 delete arr[2];
-// we expect to be [1,2,4,5]
-console.log(arr); //[ 1, 2, <1 empty item>, 4, 5 ]
-// Moreover the even the length remained
-// So we have a better solution
+// Biz [1, 2, 4, 5] bo'lishini kutgan edik
+console.log(arr); // [ 1, 2, <1 empty item>, 4, 5 ]
+// Ko'rib turganingizdek, o'rin bo'sh qoldi va hatto length ham o'zgarmadi.
+// Shuning uchun bizda yaxshiroq yechim bor:
+
 // splice
-// it works like this:splice(starting index,how many elements,replace by)
+// U quyidagicha ishlaydi: splice(boshlanish indexi, nechta element, nima bilan almashtirish)
 let arr2 = [1, 2, 3, 4, 5];
-let res = arr2.splice(1, 2, "hi"); //so i said strating from first index, delete two elements,and replace by "hi"
-console.log(arr2); //[ 1, 'hi', 4, 5 ]
-// Reminder:splice changes the array so in the example if i had consoled res:console.log(res) the result would be 2,3 this is because res takes only the deleting part
-// We can also just add
+let res = arr2.splice(1, 2, "hi"); // 1-indexdan boshlab 2 ta elementni o'chir va o'rniga "hi" qo'sh
+console.log(arr2); // [ 1, 'hi', 4, 5 ]
+
+// Eslatama: splice original Arrayni o'zgartiradi.
+// Agar biz "res"ni konsolga chiqarsak: console.log(res) -> natija [2, 3] bo'ladi, chunki u faqat o'chirilgan qismni oladi.
+
+// Shunchaki element qo'shishimiz ham mumkin:
 arr2.splice(1, 0, "i added this as first index");
-console.log(arr2); //[ 1, 'i added this as first index', 'hi', 4, 5 ]
+console.log(arr2); // [ 1, 'i added this as first index', 'hi', 4, 5 ]
 
-//If i we do slice() it will just copy the array
+// Agar biz slice() ishlatsak, u shunchaki Arraydan nusxa (copy) oladi.
 
-// In concat we can give not only arrays as arguments but also primitive
+// concat metodida argument sifatida nafaqat Array, balki primitive qiymatlarni ham berishimiz mumkin:
 let ar1 = [1, 2];
 let ar2 = [3, 4];
-console.log(ar1.concat(ar2, 5, 6)); //[ 1, 2, 3, 4, 5, 6 ]
+console.log(ar1.concat(ar2, 5, 6)); // [ 1, 2, 3, 4, 5, 6 ]
 
-// The difference between map and foreach
-// forEach doesnt return anything
-// and it doesnt make the copy of the arr or at least doesnt change the original array
+// Map va forEach o'rtasidagi farq
+// 1. forEach hech narsa return qilmaydi (natija har doim undefined).
+// 2. forEach original Arrayni o'zgartirmaydi va nusxa ham yaratmaydi.
 
-//Map return a new array with changed elements but the same length
+// Map esa o'zgargan elementlardan iborat yangi Array return qiladi, lekin length o'sha-o'sha qoladi.
 let example = [1, 2, 3, 4, 5];
-console.log(example.forEach((item) => item + 1)); //undefined, because forech returns undefined
-console.log(example.map((item) => item + 1)); //[ 2, 3, 4, 5, 6 ], returned a new arr
+console.log(example.forEach((item) => item + 1)); // undefined
+console.log(example.map((item) => item + 1)); // [ 2, 3, 4, 5, 6 ], yangi Array qaytdi.
 
-// indexOf/includes
-// syntax:
-//indexOf(item,from index) and returns the indexof element that was found
-//includes(item,from index) and return true if the result is successful
+// indexOf / includes
+// Sintaksis:
+// indexOf(item, from index) -> topilgan elementning indexini qaytaradi.
+// includes(item, from index) -> agar topsa true, topmasa false qaytaradi.
 let ind = [1, 2, 3, 4, 5, 2];
-console.log(ind.indexOf(2)); //1, first index
-console.log(ind.indexOf(2, 2)); //5. fifth index
+console.log(ind.indexOf(2)); // 1, birinchi uchragan index
+console.log(ind.indexOf(2, 2)); // 5, 2-indexdan keyin qidirib topilgan index
 
 console.log(
-  ind.includes(2)
-    ? `Yes, the array have the number 2`
-    : `No,array doesnt have the number 2`
+  ind.includes(2) ? `Ha, Arrayda 2 raqami bor` : `Yo'q, Arrayda 2 raqami yo'q`,
 );
-// Yes, the array have the number 2
-console.log(
-  ind.includes(6)
-    ? `Yes, the array have the number 6`
-    : `No,array doesnt have the number 6`
-);
-//No,array doesnt have the number 6
-//But there is a problem with indexOf
-//indexOf cannot see NaN
+
+// Lekin indexOf metodida bitta muammo bor: u NaN qiymatini ko'ra olmaydi.
 let notanumber = [NaN];
-console.log(notanumber.indexOf(NaN)); //-1(it didnt find anything)
-console.log(notanumber.includes(NaN)); //true(found)
+console.log(notanumber.indexOf(NaN)); // -1 (topa olmadi)
+console.log(notanumber.includes(NaN)); // true (topdi)
 
-// findIndex its syntax is the same with find but instead findIndex returns index
+// findIndex sintaksisi find bilan bir xil, lekin u qiymatni emas, o'sha elementning indexini qaytaradi.
 let array = [1, 2, 3, 4, 5];
-console.log(array.findIndex((item) => item == 3)); //2 is the index of the element which is equal to three
+console.log(array.findIndex((item) => item == 3)); // 2 (3 raqami turgan index)
 
-//sort
-//on default sort() sorts the elements as the string
+// sort
+// Standart holatda sort() elementlarni String (matn) sifatida tartiblaydi:
 let arrayd = [46, 5, 39, 5, 721, 83];
-console.log(arrayd.sort()); //[ 39, 46, 5, 5, 721, 83 ] => it takes only the first numbers
-/*for example:*/ console.log("15" > "95"); //false as 1 is not bigger than nine
-//when we sort strings it is better to use localcompare
+console.log(arrayd.sort()); // [ 39, 46, 5, 5, 721, 83 ] -> faqat birinchi raqamlarga qarab tartibladi.
+// Masalan: console.log("15" > "95"); // false, chunki "1" raqami "9" dan katta emas.
+
+// Stringlarni (matnlarni) sort qilganda localeCompare ishlatgan ma'qul:
 let countries = ["Österreich", "Andorra", "Vietnam"];
+console.log(countries.sort((a, b) => (a > b ? 1 : -1))); // Noto'g'ri tartiblash
+console.log(countries.sort((a, b) => a.localeCompare(b))); // To'g'ri tartiblash!
 
-console.log(countries.sort((a, b) => (a > b ? 1 : -1))); // Andorra, Vietnam, Österreich (неправильно)
+// Split metodida ikkinchi argument ham bor, u nechta elementni olish kerakligini ko'rsatadi.
 
-console.log(countries.sort((a, b) => a.localeCompare(b))); // Andorra,Österreich,Vietnam (правильно!)
+// Array.isArray(arr)
+// Bu funksiya biror narsa Array ekanligini tekshirish uchun yordam beradi:
+console.log(Array.isArray(["hi", 1])); // true
+console.log(Array.isArray({ name: "Samir" })); // false
 
-//Split has the second argument which shows how many elements to take
+// Array.from — har qanday narsadan Array yasaydigan metod:
+let str = "hello";
+console.log(Array.from(str)); // [ 'h', 'e', 'l', 'l', 'o' ]
 
-//Array.isArray(arr)
-//it is a function that helps us to check if something is an array
-console.log(Array.isArray(["hi", 1])); //true
-console.log(Array.isArray({ name: "Samir" })); //false
+let obj = {
+  name: "Temur",
+  age: 20,
+};
+console.log(Array.from(obj)); // [] - oddiy obyektni to'g'ridan-to'g'ri Array qilib bo'lmaydi.
 
-//Array from is a metgod that makes an array from anything
-let str = "hello"
-console.log(Array.from(str));//[ 'h', 'e', 'l', 'l', 'o' ]
-let obj ={
-  name:"samir",
-  age:20
-}
-console.log(Array.from(obj));//[] here it xould make a massive because obj cannot be a massive
-
+// Lekin "array-like" (Arrayga o'xshash) obyektlarni o'girsa bo'ladi:
 let arrayLike = {
   0: "Hello",
   1: "World",
-  length: 2
+  length: 2,
 };
-
-let arrs = Array.from(arrayLike); // (*)
-console.log(arrs);// [ 'Hello', 'World' ]
+let arrs = Array.from(arrayLike);
+console.log(arrs); // [ 'Hello', 'World' ]

@@ -1,59 +1,24 @@
-"use strict"
-////////////////////////////////////////////Object methods////////////////////////////////////////////////
-// Object methods are usually written like this:
-let obj = {
-  name: function () {
-    console.log("Hello");
-  }
-}
-obj.name()
-// But we have shorter version 
-let shorter = {
-  name(){
-    console.log("Hello");
-    
-  }
-}
-shorter.name()
-// It is preferable to use the shorter one
+"use strict";
+//////////////////////////////////////////// Object methods ////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////This/////////////////////////////////////////////////////////
-// Actually we can always use obj.name instead of this.name for example
-let objThis ={
-  name:"samir",
-  greet(){
-    console.log(this.name + " "+ "Hello");
-  }
-}
+// Obyekt ichida funksiya yozishning qisqa usuli:
+let user = {
+  name: "Temur",
+  sayHi() {
+    // sayHi: function() o'rniga
+    console.log("Salom");
+  },
+};
 
-let objDot ={
-  name:"samir",
-  greet(){
-    console.log(objDot.name + " "+ "Hello");
-  }
-}
+////////////////////////////////////////////////////// This ///////////////////////////////////////////////////////////
 
-objThis.greet()
-objDot.greet()
-// The same
+// 'this' — bu o'sha funksiya chaqirilgan obyektga havola beradi.
+let user1 = {
+  name: "Temur",
+  greet() {
+    console.log(this.name + " Salom");
+  },
+};
+user1.greet(); // Temur Salom
 
-// However when we dublicate there can be same bugs for example:
-// let objInCorrect = {
-//     name:"sam",
-//   greet(){
-//     console.log(objInCorrect.name + " "+ "Hello");
-//   }
-// }
-// let copy = objInCorrect
-// objInCorrect = null
-// copy.greet()//error because the name objIncorrect is null
-// but if i had used this there wouldn be any mistakes
-
-
-// Inside of function in use strict "this" is undefined hovewer in normal global
-function sayHi() {
-  console.log(this); 
-}
-sayHi()
-
-// Arrow functions dont have their this
+// Diqqat: Arrow functions (strelkali funksiyalar) o'zining 'this'iga ega emas. Ular tashqi 'this'dan foydalanadi.

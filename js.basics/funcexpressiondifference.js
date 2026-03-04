@@ -1,11 +1,12 @@
-// Function expression is  a type of function that is anonymous
-// anonymous means doesnt have a name for example:arr.filter((item)=>console.log(item))=> this is anonymous
-// the syntax is simple
+// Function expression — bu anonymous (nomsiz) bo'lgan funksiya turi
+// anonymous shuni anglatadiki, uning nomi yo'q, masalan: arr.filter((item)=>console.log(item)) — bu anonymous funksiya
+// Sintaksisi juda oddiy:
 let welcome = function () {
   console.log("hello");
 };
 welcome();
-// callback function is the type of function that is given for other function as an argument
+
+// callback function — bu boshqa bir funksiyaga argument sifatida beriladigan funksiya turi
 function names(question, yes, no) {
   if (false) {
     yes();
@@ -13,6 +14,7 @@ function names(question, yes, no) {
     no();
   }
 }
+
 names(
   "how are you",
   function () {
@@ -20,50 +22,42 @@ names(
   },
   function () {
     console.log("why??????????");
-  }
+  },
 );
-//so here wooooow and why?????? are callback functions because they are the arguments of a function names
-// by the way these callback functions are anonymous 
+// Bu yerda "wooooooow" va "why??????" callback function'lar hisoblanadi, chunki ular names funksiyasiga argument sifatida berilgan
+// Aytgancha, bu callback funksiyalar ham anonymous funksiyalardir
 
-// the main advantage of expression over declaration (the only)
-// let age = 16; // возьмём для примера 16
+// Expression'ning Declaration'dan asosiy (yagona) ustunligi:
+// Function Declaration o'zi e'lon qilingan kod blokining ichida hamma joyda mavjud bo'ladi.
+// Ammo u e'lon qilingan blokdan (masalan, if/else blokidan) tashqarida unga murojaat qilib bo'lmaydi.
 
-// if (age < 18) {
-//   welcome();               // \   (выполнится)
-//                            //  |
-//   function welcome() {     //  |
-//     alert("Привет!");      //  |  Function Declaration доступно
-//   }                        //  |  во всём блоке кода, в котором объявлено
-//                            //  |
-//   welcome();               // /   (выполнится)
+let age = 16;
 
-// } else {
+if (age < 18) {
+  // Bu yerda welcome() ishlaydi, chunki Declaration shu blok ichida hamma joyda ko'rinadi
+  function welcome() {
+    console.log("Salom!");
+  }
+} else {
+  function welcome() {
+    console.log("Assalomu alaykum!");
+  }
+}
 
-//   function welcome() {
-//     alert("Здравствуйте!");
-//   }
-// }
+// welcome(); // Bu yerda Xatolik beradi: welcome is not defined
 
-// // здесь фигурная скобка закрывается,
-// // поэтому Function Declaration, созданные внутри блока кода выше -- недоступны отсюда.
+// Function Expression bilan esa bu muammoni hal qilsa bo'ladi:
+let welcomeFunc;
+let userAge = 18;
 
-// welcome(); // Ошибка: welcome is not defined
-// let age = prompt("Сколько Вам лет?", 18);
+if (userAge < 18) {
+  welcomeFunc = function () {
+    console.log("Salom!");
+  };
+} else {
+  welcomeFunc = function () {
+    console.log("Assalomu alaykum!");
+  };
+}
 
-// let welcome;
-
-// if (age < 18) {
-
-//   welcome = function() {
-//     alert("Привет!");
-//   };
-
-// } else {
-
-//   welcome = function() {
-//     alert("Здравствуйте!");
-//   };
-
-// }
-
-// welcome(); // теперь всё в порядке
+welcomeFunc(); // Endi hammasi tartibda va funksiya ishlaydi

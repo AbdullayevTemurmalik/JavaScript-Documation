@@ -1,26 +1,28 @@
-// ///////////////////////////////////////Numbers/////////////////////////////////////////////////////////////////
-// to make the number in the power of something we can use ** operator
-const num = 5
-console.log(num ** 5); //=> 3125
-// we use +=, -=, *= etc to say that we need to add a variable a number and change the value of it
-let nums = 10
-console.log(nums+=15);//=> 25 because nums == 10 + 15 =25 and then it is = nums
-let num2 = 10
-console.log(num2 = num2 + 15);//the same but longer
+// /////////////////////////////////////// Numbers /////////////////////////////////////////////////////////////////
 
-console.log(1/0); //=> this is going to be infinity
+// Sonni biror darajaga ko'tarish uchun ** operatoridan foydalanishimiz mumkin
+const num = 5;
+console.log(num ** 5); // => 3125
 
-// in javascript any manupulation with + - * etc are not going to return an error at worst NaN
+// O'zgaruvchiga qiymat qo'shish va uni birdaniga o'zgartirish uchun +=, -=, *= kabi qisqartmalardan foydalanamiz
+let nums = 10;
+console.log((nums += 15)); // => 25, chunki nums = 10 + 15 va natija yana nums'ga tenglanadi
 
-// to create a bigint number we add n to the end
-console.log(typeof 48348384834902n); //=> bigint
-// to convert  variable into a boolean we do Boolean()
-const sum = 20
-console.log(typeof sum);//=> number
-console.log(typeof Boolean(sum));//=>boolean
+let num2 = 10;
+console.log((num2 = num2 + 15)); // Yuqoridagi bilan bir xil, lekin uzunroq yozilishi
 
-console.log(typeof Infinity); //number
+// JavaScriptda sonni nolga bo'lish xatolik bermaydi, balki Infinity (cheksizlik) qaytaradi
+console.log(1 / 0); // => Infinity
 
+// JavaScriptda har qanday + - * kabi amallar xatolik qaytarmaydi, eng yomon holatda NaN natijasini beradi
 
+// BigInt (juda katta son) yaratish uchun sonning oxiriga n harfini qo'shamiz
+console.log(typeof 48348384834902n); // => bigint
 
+// O'zgaruvchini boolean (mantiqiy) turga o'tkazish uchun Boolean() funksiyasidan foydalaniladi
+const sumVal = 20;
+console.log(typeof sumVal); // => number
+console.log(typeof Boolean(sumVal)); // => boolean
 
+// Infinity turini tekshirsak, u number bo'lib chiqadi
+console.log(typeof Infinity); // => number

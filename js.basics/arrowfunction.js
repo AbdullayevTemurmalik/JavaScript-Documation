@@ -1,24 +1,25 @@
-//////////////////////////////////////////////////Arrow function////////////////////////////////////////////////////
-// arrow function is just a shorter version of a function 
-// if it is declaration
-function sum(a,b) {
-  console.log(a+b);
+////////////////////////////////////////////////// Arrow function ////////////////////////////////////////////////////
+
+// Arrow function — bu funksiyaning shunchaki qisqaroq ko'rinishi
+// Agar u declaration bo'lsa:
+function sum(a, b) {
+  console.log(a + b);
 }
-sum(10,20)
-// While arrow function looks like this:
-let hello = (a,b) => console.log(a+b);
-hello(10,20)
-// Both are the same
-// As you can see this function is anonymous because arrow function is actually a type of function expression
+sum(10, 20);
 
-// If there is only one parameter we can do next
-let root = a=>console.log(Math.sqrt(a));
-root(49)//7
-// we just ommited the round brackets
+// Arrow function esa quyidagicha ko'rinadi:
+let hello = (a, b) => console.log(a + b);
+hello(10, 20);
+// Ikkalasi ham bir xil narsa
+// Ko'rib turganingizdek, bu funksiya anonymous (nomsiz) hisoblanadi, chunki arrow function aslida function expression'ning bir turidir
 
-// But if we dont have parameters we can do this:
+// Agar faqat bitta parametr bo'lsa, quyidagicha yozishimiz mumkin:
+let root = (a) => console.log(Math.sqrt(a));
+root(49); // 7
+// Bunda biz shunchaki yumaloq qavslarni tashlab ketdik
+
+// Agar parametrlar bo'lmasa, quyidagicha yozamiz:
 let greet = () => console.log("hello");
-greet() //Hello
+greet(); // Hello
 
-// return doesnt work in arrow functions if it is only one line
- 
+// Agar funksiya faqat bir qatordan iborat bo'lsa, arrow function'larda return so'zi ishlamaydi (ya'ni return yozish shart emas)

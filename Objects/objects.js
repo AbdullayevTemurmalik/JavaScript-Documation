@@ -1,117 +1,34 @@
-//////////////////////////////////////////////////Objects//////////////////////////////////////////////////////////
-// There are two ways of opening an object 
-// 1) constructor
-let obj = new Object 
-console.log(obj);
-// 2)litteral
-let obj1 = {}
-console.log(obj1);
+////////////////////////////////////////////////// Objects //////////////////////////////////////////////////////////
 
+// Obyekt yaratishning ikki yo'li:
+let obj = new Object(); // constructor usuli
+let obj1 = {}; // literal usuli
 
-// we can also delete something from objects by using "delete"
-let exampleobj = {
-  name:"Samir",
-  age:20
-}
-console.log(exampleobj); //{ name: 'Samir', age: 20 }
-delete exampleobj.age
-console.log(exampleobj); //{ name: 'Samir' }
+// Elementni o'chirish:
+let exampleobj = { name: "Temur", age: 20 };
+delete exampleobj.age; // age o'chirildi
 
-
-// If we want to make the key consist of two or more words we use ""
+// Agar kalit (key) bir nechta so'zdan iborat bo'lsa, "" qo'shtirnoq ishlatiladi:
 let obj2 = {
-  name:"Sam",
-  //Favourite activity:"football" =>error
-  "Favourite activity":"football" //=>correct
-}
+  "Favourite activity": "football",
+};
+// Bunday kalitlarni nuqta bilan chaqirib bo'lmaydi, [] qavs kerak:
+console.log(obj2["Favourite activity"]); // football
 
-console.log(obj2);//{ name: 'Sam', 'Favourite activity': 'football' }
+// O'zgaruvchini kalit sifatida ishlatish (computed properties):
+let fruit = "apple";
+let bag = { [fruit]: 5 }; // bag.apple = 5 bo'ladi
 
-// however we cant call the value with two word by full stop
-// console.log(obj2.Favourite activity); =>mistake
-console.log(obj2["Favourite activity"]); //correct
-// however
-console.log(obj2.name); //correct
-console.log(obj2["name"]); //correct
-// in this example both are correct
-
-// to add key with two words
-obj2["his name"] = "mrBeast"
-
-obj2["cow"] = "ron"
-console.log(obj2);//also correct
- 
-// if we want to give a variable as a key we do
-let cola = "free cola"
-obj2[cola] = false
-console.log(obj2); //correct
-
-let pepsi = "free pepsi"
-obj2.pepsi = true
-console.log(obj2); //Also correct
-
-
-// we also use square brackets to put value as a prompt
-// let fruit = prompt("Какой фрукт купить?", "apple");
-
-// let bag = {
-//   [fruit]: 5,
-// };
-
-// alert( bag.apple );
-
-
-
-// we can also shorten our code
+// Qisqartma (Shorthand):
 function makeUser(name, age) {
-  return {
-    name, // => name: name
-    age   // => age: age
-  };
-} 
-console.log(makeUser("dam",20)); //{ name: 'dam', age: 20 }
-
-// in javascript we can get the element even if it doesnt exist
-let user = {};
-
-console.log( user.noSuchProperty === undefined ); // true
-
-
-
-
-
-// There is a specila property "in"
-// the function of "in" is to findout if the key exists in the object:
-let obj3 = {
-  name:"tr",
-  age:13,
-  hobby:"foolbal"
+  return { name, age }; // name: name o'rniga shunchaki name
 }
-console.log("name" in obj3); //true
-console.log("food" in obj3); //false
 
+// "in" operatori — kalit borligini tekshiradi:
+let user = { age: 30 };
+console.log("age" in user); // true
 
-let mol = { age: 30 };
-
-let key = "age";
-console.log( key in mol ); // true
-
-
-// For in
-let team = {
-  goalkeaper:"Mee",
-  centerBack:"Olx",
-  striker:"Ron",
+// for...in tsikli — obyektning barcha kalitlarini aylanish uchun:
+for (let key in user) {
+  console.log(key + ": " + user[key]);
 }
-for(let key in team){
-  console.log(key+":"+" "+team[key]);
-  // goalkeaper: Mee
-// centerBack: Olx
-// striker: Ron
-}
-// We dont need to put how many times the iterations should work because "for in" always checks the whole object which means
-// 6 keys in object:6 iterations,2 keys in object,2 iterations
-
-// in the example let key = each key of the object
-// [key] == the value of each key
-

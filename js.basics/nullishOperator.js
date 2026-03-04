@@ -1,19 +1,21 @@
-// //////////////////////////////////////////////////Nullish Operator///////////////////////////////////////////////
-// ?? is used to manipulate with something if it is neither undefined nor null
-console.log(12??undefined);//=>12
-//or
-let user;
-console.log(user ?? "Anonym")//=> "anonym" as user is null
-// Actually ?? = || however ?? can differenciate 0 and "" with null and undefined
-console.log(0 || 12);//12 as 0 is falsy
-console.log(0 ?? 12);//0 as 0 is not null or undefined
-// ||=>false
-// ??=>undefined or null
-// ??=
-// we use this to say that if it is null or undefined it has to change
-let hi;
-hi = hi ??= 15;
-console.log(hi);//=>15
+// Sonni darajaga ko'tarish uchun ** operatori ishlatiladi
+const num = 5;
+console.log(num ** 5); // => 3125
 
+// +=, -=, *= kabi operatorlar o'zgaruvchi qiymatini hisoblab, qayta saqlaydi
+let nums = 10;
+nums += 15; // nums = 10 + 15 bilan bir xil
+console.log(nums); // => 25
 
+// Nolga bo'lish Infinity (cheksizlik) qaytaradi
+console.log(1 / 0); // => Infinity
 
+// BigInt yaratish uchun son oxiriga "n" qo'shiladi
+console.log(typeof 48348384834902n); // => bigint
+
+// O'zgaruvchini boolean turiga o'tkazish
+const sumVal = 20;
+console.log(typeof Boolean(sumVal)); // => boolean
+
+// Infinity turi raqam deb hisoblanadi
+console.log(typeof Infinity); // => number

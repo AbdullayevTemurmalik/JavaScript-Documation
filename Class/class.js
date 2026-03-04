@@ -1,104 +1,107 @@
-//////////////////////////////////////////////classes//////////////////////////////////////////////////////////////
-//The syntax:
+////////////////////////////////////////////// Klasslar (Classes) //////////////////////////////////////////////////////////////
+// Sintaksis:
 // class Myclass {
 //   constructor(){
-  
-//   }
-//   method1:(){}
-//   method2:(){}
-//   method3:(){}
-// }
-//And we can use it by doing:
-//new Myclass
 
-//Constructor is an intializator for the classes all the values are being created there and the parameters will also go to contructor part
+//   }
+//   method1(){}
+//   method2(){}
+//   method3(){}
+// }
+// Va biz undan quyidagicha foydalanamiz:
+// new Myclass
+
+// Constructor — bu klasslar uchun initsializator bo'lib, barcha qiymatlar u yerda yaratiladi va parametrlar ham aynan constructor qismiga uzatiladi
 // class Multiply {
 //   constructor(a,b){
 //    this.a = a
 //    this.b = b
 //   }
 //   mult(){
-//    console.log(`The answer for ${this.a} * ${this.b} is ${this.a*this.b}`)
+//    console.log(`${this.a} * ${this.b} uchun javob: ${this.a*this.b}`)
 //   }
 // }
-// const cl = new Multiply(10,20)  
-// cl.mult()//200
-//we can also make some logic
+// const cl = new Multiply(10,20)
+// cl.mult() // 200
+
+// Shuningdek, biz ba'zi mantiqiy shartlarni ham kiritishimiz mumkin
 class Multiply {
-  constructor(a,b){
-    if(a > 10 || b > 10){
-      throw new Error("To big number i cant calculate")
+  constructor(a, b) {
+    if (a > 10 || b > 10) {
+      throw new Error("Juda katta son, hisoblay olmayman");
     }
-    this.a = a
-    this.b = b
+    this.a = a;
+    this.b = b;
   }
-  mult(){
-   console.log(`The answer for ${this.a} * ${this.b} is ${this.a*this.b}`)
+  mult() {
+    console.log(`${this.a} * ${this.b} uchun javob: ${this.a * this.b}`);
   }
 }
-const cl = new Multiply(9,9)  
-cl.mult()
-// Class is not just a syntax suntax sugar, even if ve still can rewrite the classees in functions:
-function multiply(a,b) {
-  if(a> 10 || b >10){
-     throw new Error("To big number i cant calculate")
+const cl = new Multiply(9, 9);
+cl.mult();
+
+// Klass shunchaki "shirin sintaksis" emas, garchi biz klasslarni funksiyalar yordamida qayta yozishimiz mumkin bo'lsa ham:
+function multiply(a, b) {
+  if (a > 10 || b > 10) {
+    throw new Error("Juda katta son, hisoblay olmayman");
   }
-  this.a = a
-  this.b = b
+  this.a = a;
+  this.b = b;
 }
 
-multiply.prototype.mult = function() {
-  console.log(this.a * this.b)
-}
-let smth = new multiply(2,3)
-smth.mult()
-//However for lcasses js has special property [[IsClassConstructor]]: true, so for that reason classes cant be called without new
-//Classes are always in use strict mode
+multiply.prototype.mult = function () {
+  console.log(this.a * this.b);
+};
+let smth = new multiply(2, 3);
+smth.mult();
 
+// Biroq klasslar uchun JS'da maxsus [[IsClassConstructor]]: true xususiyati mavjud, shu sababli klasslarni "new"siz chaqirib bo'lmaydi
+// Klasslar har doim "use strict" (qat'iy) rejimida ishlaydi
 
-//Class expressions
-//class can also be expressions:
-const saveClass = class{
-  constructor(a,b){
-    if(a > 10 || b > 10){
-      throw new Error("To big number i cant calculate")
+// Class expressions (Klass ifodalari)
+// Klasslar ham ifoda ko'rinishida bo'lishi mumkin:
+const saveClass = class {
+  constructor(a, b) {
+    if (a > 10 || b > 10) {
+      throw new Error("Juda katta son, hisoblay olmayman");
     }
-    this.a = a
-    this.b = b
+    this.a = a;
+    this.b = b;
   }
-  mult(){
-   console.log(`The answer for ${this.a} * ${this.b} is ${this.a*this.b}`)
+  mult() {
+    console.log(`${this.a} * ${this.b} uchun javob: ${this.a * this.b}`);
   }
-}
-const wow = new saveClass(9,9)
-wow.mult()
-// and cas also be nfe => named function expression
-//const hello = class Hello{}
+};
+const wow = new saveClass(9, 9);
+wow.mult();
 
-//getters and setters
-//Getters and setters are mostly used to control or validate the information
+// Va shuningdek NFE (nomlangan funksiya ifodasi) bo'lishi ham mumkin
+// const hello = class Hello{}
+
+// Getters va Setters (Oluvchilar va O'rnatuvchilar)
+// Getters va setters asosan ma'lumotlarni nazorat qilish yoki tekshirish (validatsiya) uchun ishlatiladi
 class ProtectedClass {
   constructor(name, word) {
-    this._name = name
-    this.word = word
+    this._name = name;
+    this.word = word;
   }
 
   get name() {
-    return this._name
+    return this._name;
   }
 
   set name(value) {
     if (value.length <= 2) {
-      console.log("The name is too short")
-      return
+      console.log("Ism juda qisqa");
+      return;
     }
-    this._name = value
+    this._name = value;
   }
 
   say() {
-    console.log(this.word, this.name)
+    console.log(this.word, this.name);
   }
 }
 
-const user = new ProtectedClass("samir", "hello")
-user.say()
+const user = new ProtectedClass("samir", "salom");
+user.say();

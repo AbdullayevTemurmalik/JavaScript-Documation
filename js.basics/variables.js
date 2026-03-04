@@ -1,12 +1,11 @@
-// //////////////////////////////////Variables///////////////////////////////////////////////////////
-// const 1win = "hello" => error because we cant name a variable with a number in the beginning
+// O'zgaruvchi nomini raqam bilan boshlash xatolik beradi
+// const 1win = "hello"; // Error
 
-// Dynamic typing => means that i dont need to write whether the variable contains string,number,boolean etc
-let contains; 
-console.log(contains); //=>the result is undefined
+// Dynamic typing — o'zgaruvchi turini oldindan aytish shart emas
+let contains;
+console.log(contains); // => undefined (qiymat berilmagan bo'lsa)
 
-// const contains; 
-// console.log(contains); => the result is an error
-// Use const when you can, and use let when you have to.
+// const o'zgaruvchisiga darhol qiymat berish shart
+// const someValue; // Error
 
-  
+// Qoida: Iloji boricha const, zarur bo'lganda let ishlatish kerak

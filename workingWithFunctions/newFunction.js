@@ -1,57 +1,67 @@
-/////////////////////////////////////////////////new Function///////////////////////////////////////////////////////
-//There is a method to create a new function, it is rarely used:
-let func = new Function('a','b', 'return a+b')
-console.log(func(10,20));//30
-//here is the function without arguments:
-let show = new Function('console.log("Hello")')
-show()//hello
+///////////////////////////////////////////////// new Function ///////////////////////////////////////////////////////
 
-//Closure
-//Unlike other types of function  new fucntion cannot access to its outer lexical environment, only global
+// Yangi funksiya yaratishning bir usuli bor, u kamdan-kam qo'llaniladi:
+let func = new Function("a", "b", "return a + b");
+console.log(func(10, 20)); // 30
 
-// function doesntHaveTheAccess() {
-//   let value = "hello"
-//   let func = new Function(`console.log(value)`)
-//   return func
-// }
-// let returned = doesntHaveTheAccess()
-// returned()//error
-   globalThis.value = "hi"
- function doesntHaveTheAccess() {
-   
-   let func1 = new Function('console.log(value)')
-   return func1
- }
- let returned = doesntHaveTheAccess()
- returned()//hi
+// Argumentlarsiz funksiya namunasi:
+let show = new Function('console.log("Hello")');
+show(); // hello
 
-//In node js each file is a module that doesnt have a global lexical environment, everything inside this file is local, as we it was said in the last file we locate the variable to the global by writing globalThis.value = "hi", we just manually place a variable to a global environment, and as we said new function have the access only to global
+// Closure (Yopilish)
+// Funksiyaning boshqa turlaridan farqli o'laroq, new Function o'zining tashqi lexical environment'iga kira olmaydi, faqat global muhitga kira oladi.
 
-//Usage:
-//Lets imagine we receive stringified function from server
- let serverCode = `
+/*
+function doesntHaveTheAccess() {
+  let value = "hello"
+  let func = new Function(`console.log(value)`)
+  return func
+}
+let returned = doesntHaveTheAccess()
+returned() // xatolik (error)
+*/
+
+globalThis.value = "hi";
+function doesntHaveTheAccess() {
+  let func1 = new Function("console.log(value)");
+  return func1;
+}
+let returned = doesntHaveTheAccess();
+returned(); // hi
+
+// Node.js'da har bir fayl modul hisoblanadi va u global lexical environment'ga ega emas, bu fayl ichidagi hamma narsa mahalliy (local).
+// Biz o'zgaruvchini "globalThis.value = 'hi'" deb yozish orqali qo'lda global muhitga joylashtiramiz va new Function faqat global muhitga kira oladi.
+
+// Ishlatilishi (Usage):
+// Tasavvur qilaylik, biz serverdan string ko'rinishidagi funksiyani qabul qildik:
+let serverCode = `
   if (price > 100) {
-    return price * 0.9; // скидка 10%
+    return price * 0.9; // 10% chegirma
   } else {
     return price;
   }
 `;
-//so to use that we need to use new function, explanation will be below
-let makeFunctionWork = new Function("price",serverCode)
-console.log(makeFunctionWork(10));//10
-console.log(makeFunctionWork(542));//487.8
-//new function can be dynamic, dynamic means it can work even if it doesnt know exactly what upcomming function does, simple function always do the code that was written to it, it already knows what it does,however new function can be "adaptive"
-//So simply we use new function when we dont know what upcomming function does
- //Firstly lets see what is minifier
- //Minifier is a programm that shrinks the code, by removing comments, spaces, and the most important, making short names for local variables, for example if it was "let hello", after minifier it may become "let a".
-//What would happen if new function had the access to the outer environment?
-// function makeFunc() {
-//   let userName = "Samir";
-//   return new Function('console.log(userName)');
-// }
-// makeFunc()();
-//in this example minifier would change the "let userName = "Samir";" to something like that "let a = "Samir";", in normal functions the variable where it was used would also change, but as inside of new function we write in a string, minifier would not access the string and the ame of variable would remain inside of a string, and as the variable has changed the name the name inside of string would be undefined
-//Minifier would function look like this:
-//function makeFunc(){let a="Samir";return new Function('console.log(userName)')}makeFunc()();
- 
 
+// Undan foydalanish uchun bizga new Function kerak bo'ladi:
+let makeFunctionWork = new Function("price", serverCode);
+console.log(makeFunctionWork(10)); // 10
+console.log(makeFunctionWork(542)); // 487.8
+
+// new Function dinamik bo'lishi mumkin, ya'ni u kelayotgan funksiya nima qilishini aniq bilmasa ham ishlay oladi.
+// Oddiy funksiyalar har doim o'ziga yozilgan kodni bajaradi, ammo new Function "moslashuvchan" bo'la oladi.
+
+// Minifier haqida:
+// Minifier — bu kodni sharhlar va bo'shliqlarni olib tashlash orqali qisqartiradigan dastur.
+// Eng muhimi, u mahalliy o'zgaruvchilar uchun qisqa nomlar beradi (masalan, "let hello" o'rniga "let a").
+
+// Agar new Function tashqi muhitga (outer environment) kirish imkoniga ega bo'lganda nima bo'lardi?
+/*
+function makeFunc() {
+  let userName = "Temur";
+  return new Function('console.log(userName)');
+}
+makeFunc()();
+*/
+// Bu misolda minifier "let userName = 'Temur';" qismini "let a = 'Temur';" ga o'zgartirgan bo'lardi.
+// Oddiy funksiyalarda bu o'zgaruvchi ishlatilgan hamma joyda o'zgaradi, lekin new Function ichida kod string (matn) ko'rinishida yozilgani uchun minifier unga tegmaydi va o'zgaruvchi nomi string ichida o'zgarishsiz qolib ketadi.
+// Natijada o'zgaruvchi nomi o'zgargani uchun string ichidagi eski nom "undefined" bo'lib qoladi.

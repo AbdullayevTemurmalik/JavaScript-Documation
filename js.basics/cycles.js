@@ -1,50 +1,51 @@
-// /////////////////////////////////////////Cycles(loops)//////////////////////////////////////////////////////////
-// while =>while has this syntax
-// while(condition){body of the cycle} 
-let i = 0
-while(i < 10){
-  i++
-  console.log(i)
-}
-// one full work of cycle is called iteration
-// do while
-// we need do while to make a function work at least once
-let j =5
+// ///////////////////////////////////////// Cycles (loops) //////////////////////////////////////////////////////////
 
-do{
-  j++
-  console.log(j);
-}while (j<5)
-  console.log("the end of the cycle ");//=>6
-
-  // however in normal cycle it would be nothing as 5<5 is never true
-  let hi = 1
-  res = 0
-  while(hi <100){
-    hi++
-    res += hi
-    
-  }
-  console.log(res);
-  for(let i =0;i<100;i+=2){
-    console.log(i);
-    
-  }
-  // break is used to stop a loop from working 
-  for(let i=8;i<50;i++){
-   if(i % 7 ==0){
-    console.log("found the number:"+" "+i);
-    break
-   }
-   console.log(i +" "+"is not devided by 7");
-   
-    
-  }
-// we need continue to omit only one part of the for loop
-for (let i = 0; i < 50; i++) {
-  if(i % 2 ==0)continue
+// while => while tsikli quyidagi syntax'ga ega:
+// while(condition){ tsikl tanasi }
+let i = 0;
+while (i < 10) {
+  i++;
   console.log(i);
-  
 }
-// so here if it sees number %2 ==0 it breaks only for one iteration
-// break and continue cant be used with ternary operator
+// Tsiklning bir marta to'liq aylanishi "iteration" deb ataladi
+
+// do while
+// do while tsikli funksiyani (kodni) kamida bir marta ishlatish uchun kerak bo'ladi
+let j = 5;
+
+do {
+  j++;
+  console.log(j);
+} while (j < 5);
+console.log("the end of the cycle "); //=> 6
+
+// Biroq, oddiy tsiklda hech narsa bo'lmagan bo'lardi, chunki 5 < 5 hech qachon true emas
+let hi = 1;
+let res = 0;
+while (hi < 100) {
+  hi++;
+  res += hi;
+}
+console.log(res);
+
+for (let i = 0; i < 100; i += 2) {
+  console.log(i);
+}
+
+// break — tsiklning ishlashini to'xtatish uchun ishlatiladi
+for (let i = 8; i < 50; i++) {
+  if (i % 7 == 0) {
+    console.log("found the number:" + " " + i);
+    break;
+  }
+  console.log(i + " " + "is not devided by 7");
+}
+
+// continue — for tsiklining faqat bir qismini (iteratsiyasini) tashlab o'tish uchun kerak
+for (let i = 0; i < 50; i++) {
+  if (i % 2 == 0) continue;
+  console.log(i);
+}
+// Bu yerda agar son % 2 == 0 shartini bajarsa, u faqat o'sha iteratsiyani to'xtatadi
+
+// break va continue'ni ternary operator bilan birga ishlatib bo'lmaydi

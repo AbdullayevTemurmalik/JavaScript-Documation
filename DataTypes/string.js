@@ -1,123 +1,98 @@
-// In js we cannot crate a string that consist of several lines
+////////////////////////////////////////////// Strings /////////////////////////////////////////////////////////////
 
-// console.log(
-//   "w
-//   e
-//   e"
+// JavaScript-da oddiy qo'shtirnoqlar bilan bir necha qatordan iborat matn yaratib bo'lmaydi:
+// console.log("w\ne\ne"); // Bu xatolik beradi
 
-// );//error
-// For that reason we have backticks
-console.log(
-  `
+// Shu sababli bizda Backticks (qiyshiq qo'shtirnoqlar) bor:
+console.log(`
   w
   e
-  e`
-);//no error,
-// w
-// e
-// e
+  e`);
+// Natija xatosiz chiqadi va qatorlarni saqlab qoladi.
 
-// However if we really want to use normal quotes
-// There are the things called "special characters"
+// Agar baribir oddiy qo'shtirnoq ishlatmoqchi bo'lsak, "Special characters" (maxsus belgilar)dan foydalanamiz.
 
-/////////////////////////////////////////////////////  \n  /////////////////////////////////////////////////////////
-// So basically \n does exactly what "eneter" does in the laptop
-let guestList = "Guests:\n * John\n * Pete\n * Mary";
+///////////////////////////////////////////////////// \n /////////////////////////////////////////////////////////
 
+// \n belgisi klaviaturadagi "Enter" tugmasi kabi vazifani bajaradi:
+let guestList = "Mehmonlar:\n * John\n * Pete\n * Mary";
 console.log(guestList);
-/* John
+/* Mehmonlar:
+ * John
  * Pete
  * Mary
- * */ 
-//or
-console.log("hello\n this\n symbols\n creates\n spaces\n");
-/*hello
- this
- symbols
- creates
- spaces
-*/
-// as today they are not used oftenly i decided noy know continue learning them
+ */
 
+// Matn elementlarini (harflarni) olishning ikkita yo'li bor:
+// 1) [] va index orqali:
+let str = "hello";
+console.log(str[1]); // e
 
+// 2) str.at(index) metodi orqali:
+console.log(str.at(1)); // e
 
+// Farqi:
+console.log(str[-1]); // undefined (manfiy indexni [] tanimaydi)
+console.log(str.at(-1)); // o (oxirgi harfni topib beradi)
 
-//Getting element of the string
-// So there are two ways 
-// 1)by [] and index 
-let str = "hello"
-console.log(str[1]);//e
-//2)By method str.at(index)
-console.log(str.at(1));//e
+// str.at() xuddi str.slice() kabi ishlaydi, lekin u faqat bitta harfni qaytaradi.
 
-// however
-console.log(str[-1]);//undefined (i wanted to take the last letter no matter the length)
-console.log(str.at(-1));//o (found the last element)
+///////////////////////////////////// Matn ichidan qidirish /////////////////////////////////////
 
-// basically str.at() works like str.slice() but str.at() shows only one letter
+// 1) indexOf(substr, pos) — qidirilayotgan qism matnning indexini qaytaradi:
+let str1 = "Salom mening ismim Temur";
+console.log(str1.indexOf("Salom")); // 0
+console.log(str1.indexOf("is")); // 13
+console.log(str1.indexOf("xato")); // -1 (agar topilmasa)
 
-// Searching for a substring, there are several methods
-//1) indexOf(substr,pos)
-let str1 = "Hello my name is Samir"
-console.log(str1.indexOf("Hello"));//0
-console.log(str1.indexOf("el"));//1
-console.log(str1.indexOf("nam"));//9
-console.log(str1.indexOf("namd"));//-1 because namd doesnt exist
+let str2 = "Widget with id";
+console.log(str2.indexOf("id")); // 1 (chunki "Widget" so'zi ichida "id" bor)
+console.log(str2.indexOf("id", 2)); // 12 (2-indexdan keyingi "id"ni qidiradi)
 
-let str2 = 'Widget with id';
+// Bitwise "NOT" operatori (~)
+// Bu operator eskilarning "hiylasi" bo'lib, n ni -(n+1) ko'rinishiga o'tkazadi.
+// Uni indexOf bilan birga ishlatishgan (hozirda ko'p ishlatilmaydi):
+let name = "Temur";
+console.log(~name.indexOf("r")); // Agar -1 bo'lsa 0 qaytaradi (ya'ni false)
 
-console.log( str2.indexOf('id') ) // 1 becasue Widget has id which is in 1 index
+// Shuningdek, ~~ (double not) sonning kasr qismini olib tashlashda foydali:
+console.log(~~3.4); // 3
 
-let str3 = 'Widget with id';
+///////////////////////////////////// Qirqib olish (Slice vs Substring) /////////////////////////////////////
 
-console.log( str3.indexOf('id', 2) ) // 12 finds the second id
+// str.slice(start, end) va str.substring(start, end) deyarli bir xil, lekin:
+// Agar start end'dan katta bo'lsa, Substring ularning o'rnini almashtiradi, Slice esa bo'sh matn qaytaradi.
 
-// Bitwise "Not" operator
-// There are several places where this operator can be used
-/*1)*/ console.log(~2) // => - 3, because ~ === -(n+1)
-// So why do we need that? This operator is mostly used in indexOf()
-let name = "Samir"
-console.log(~name.indexOf("r"));//To make the indexOf more compact they said, but honestly this trick is not used nowadays but it can be met in old codes
+let vc = "vanilla";
+console.log(vc.slice(1, 4)); // ani
+console.log(vc.substring(1, 4)); // ani
 
-// By the way ~~(double not)can help us by getting rid of fraction part of the number
-console.log(~~3.4);//3
+// Farqi:
+console.log(vc.slice(4, 1)); // "" (bo'shliq)
+console.log(vc.substring(4, 1)); // "ani" (o'rnini almashtirib 1 dan 4 gacha qirqdi)
 
-// In includes() there is a second parameter position which shows the position
+// Slice manfiy indexlarni qo'llab-quvvatlaydi, Substring esa yo'q:
+console.log(vc.slice(-1)); // "a" (oxirgi harf)
+console.log(vc.substring(-1)); // "vanilla" (manfiy sonni 0 deb hisoblaydi)
 
-// str.substring is the same with str.slice, however if the start(first parmeter) is bigger then the second substring just swaps their places, while slice cant do it
+// Xulosa: Hozirgi kunda slice ishlatish afzalroq.
 
-let vc = "vanilla"
-console.log(vc.slice(1,4));//ani
-console.log(vc.substring(1,4));//ani
-// however here
-console.log(vc.slice(4,1));//" " nothing
-console.log(vc.substring(4,1));//ani => the same with (1,4)
-// however substring doesnt support negative index
-console.log(vc.slice(-1));//a => the last a
-console.log(vc.substring(-1));//vanilla
-console.log(vc.substring(-4));//vanilla
+// substr() — bu metod eskirgan (deprecated).
+// U (index, nechta element) ko'rinishida ishlaydi:
+console.log(vc.substr(2, 4)); // "nill" (2-indexdan boshlab 4 ta harf oldi)
 
-// So to sum up, Nowadays it is better to use slice
+///////////////////////////////////// localeCompare /////////////////////////////////////
 
-// Substr. !!!today it i preferable not to use substr because it is deprecated(old)
-// it is very simple, finds out the string by index, and with the second parameter shows how many to take
-console.log(vc.substr(2,4));//nill
+// Nega < > belgilaridan foydalanmaymiz?
+// Chunki localeCompare turli tillardagi harflarni (masalan, ruscha 'ю' va inglizcha 'a') to'g'ri solishtiradi.
+// 0 qaytarsa — teng
+// -1 qaytarsa — str1 kichik str2 dan
+// 1 qaytarsa — str1 katta str2 dan
 
-// Local compare
-// if local compare == 0, it means that string are equal
-// if local compare ==-1, str1<str2
-// if local compare ==1, str1>str2
-let comp1 = "sen"
-let comp = "zen"
-console.log(comp1.localeCompare(comp));//-1, because z>s
-// But why do we need that? Why cant we compare with < > == signs? This is because localcompare can compare signs from different languages
-let rus = "ю"
-let eng = "a"
-let engLast = "z"
-console.log(rus.localeCompare(eng));//-1
-console.log(rus > eng);//-1
+let comp1 = "sen";
+let comp = "zen";
+console.log(comp1.localeCompare(comp)); // -1 (chunki 'z' alifboda 's' dan keyin keladi)
 
-let dd = [1,2,3,4,5,6,7]
-dd.splice(5,1)
-console.log(dd);
-
+let dd = [1, 2, 3, 4, 5, 6, 7];
+dd.splice(5, 1); // 5-indexdagi elementni (6 sonini) o'chirdi
+console.log(dd); // [1, 2, 3, 4, 5, 7]

@@ -1,94 +1,91 @@
-// In js there are two ways of creating an array
-// 1)[]
-// 2)new Array()
+////////////////////////////////////////////// ARRAYS //////////////////////////////////////////////////////////////
 
-// we can change somethig inside of an array by using index
-let arr = [1,2,3,4,5]
-console.log(arr);//[ 1, 2, 3, 4, 5 ]
-arr[2]=100
-console.log(arr);//[ 1, 2, 100, 4, 5 ]
+// JS da Array yaratishning ikkita yo'li bor:
+// 1) []
+// 2) new Array()
 
-/////////////////////arr.at
-// arr.at works the same with str.at finds out something by index
-// why cant we just do arr[-1] instead of at
-//this is because arrays do not support negative index 
-console.log(arr[-1]);//undefined
-console.log(arr.at(-1));//5 (last element)
+// Biz Array ichidagi qiymatni index orqali o'zgartirishimiz mumkin:
+let arr = [1, 2, 3, 4, 5];
+console.log(arr); // [ 1, 2, 3, 4, 5 ]
+arr[2] = 100;
+console.log(arr); // [ 1, 2, 100, 4, 5 ]
 
-// Варианты неправильного применения массива:
+///////////////////// arr.at
+// arr.at xuddi str.at kabi ishlaydi, index bo'yicha elementni topadi.
+// Nega biz arr[-1] qila olmaymiz?
+// Chunki Arraylar negative indexni qo'llab-quvvatlamaydi.
+console.log(arr[-1]); // undefined
+console.log(arr.at(-1)); // 5 (oxirgi element)
 
-// Добавление нечислового свойства, например: arr.test = 5.
-// Создание «дыр», например: добавление arr[0], затем arr[1000] (между ними ничего нет).
-// Заполнение массива в обратном порядке, например: arr[1000], arr[999] и т.д.
+// Arrayni noto'g'ri ishlatish holatlari:
+// 1. Son bo'lmagan property qo'shish, masalan: arr.test = 5.
+// 2. "Teshiklar" yaratish, masalan: arr[0] ni qo'shib, keyin arr[1000] ni qo'shish.
+// 3. Arrayni teskari tartibda to'ldirish, masalan: arr[1000], arr[999] va hokazo.
 
+// push metodi unshiftga qaraganda tezroq ishlaydi va pushdan foydalanish tavsiya etiladi.
+// Biz unshift ishlatganimizda:
+// - U elementni topadi va [0]-indexga qo'shadi.
+// - Undan keyingi barcha elementlarni bitta indexga surib chiqadi.
+// - Va lengthni yangilaydi.
+// push esa shunchaki oxirgi bosqichni bajarmaydi.
 
-// push is faster then unshift, and it is preferable to use push more
-// when we use unshift:
-//it finds out and adds the element with to [0]
-//moves all the elemnts after [0] to one more index
-//and updates the length
-// while push just skips the second part
+// Cycles (Tsikllar)
+// Biz foydalanishimiz mumkin bo'lgan uchta cycle bor:
+// 1) for(let i=0; i<10; i++)
+// 2) for of
+// 3) for in
 
-// Cycles
-// there are three cycles that we can use 
-//1)for(let i=0;i<10;i++)
-//2)for of
-//2)for in
-
-// The cycle for of doesnt have the access to the index of the element only values
-let arr3 = ["apple","map","guy"]
+// for of cycle elementning indexiga kira olmaydi, faqat value (qiymat) bilan ishlaydi:
+let arr3 = ["apple", "map", "guy"];
 for (const value of arr3) {
   console.log(value);
 }
-/*apple
+/*
+apple
 map
-guy*/
+guy
+*/
 
-// Technically as the array is the object we can also use for in
+// Texnik jihatdan Array ham Object bo'lgani uchun for in ishlatsa bo'ladi:
 for (const key in arr3) {
-  console.log(key);
+  console.log(key); // indexlarni chiqaradi
 }
-/*0
+/*
+0
 1
-2*/
+2
+*/
 
 for (const key in arr3) {
-  console.log(arr3[key]);
+  console.log(arr3[key]); // valuelarni chiqaradi
 }
-/*apple
-map
-guy*/
 
-// But there is a problem with for in, it reads the whole array not just the ones who have index, and brausers or other environments have "array-like" objets which have some other properties other than elements by index, so that is why it is better not to use for in 
+// Lekin for in bilan muammo bor: u butun Arrayni o'qiydi va ba'zi "array-like" obyektlarda ortiqcha propertylarni ham chiqarib yuborishi mumkin.
+// Shuning uchun for in ishlatmagan ma'qul.
 
 // arr.length
-// In javascript length does not count each element of the array but adds one to the last index
-// Another interesting thing about length is that we can rewrite them
-//1) we can add some length
-let change = [1,2,3,4,5,6]
-console.log(change.length);//6
-change.length = 8
-console.log(change.length);//8
-//now change is =>  [ 1, 2, 3, 4, 5, 6, null, null ]
-//2) we can decrease the length
-let decrease = [1,2,3,4,5,6]
-console.log(`it looks like this:${decrease} and its length is: ${decrease.length}`);
-// it looks like this:1,2,3,4,5,6 and its length is: 6
-decrease.length = 4
-console.log(`it looks like this:${decrease} and its length is: ${decrease.length}`);
-//it looks like this:1,2,3,4 and its length is: 4
+// JavaScriptda length elementlarni sanamaydi, balki oxirgi indexga birni qo'shib hisoblaydi.
+// Lengthni biz o'zimiz ham o'zgartirishimiz mumkin:
 
-//So, the simplest way to clear the array is: arr.length = 0;.
+// 1) Lengthni oshirish:
+let change = [1, 2, 3, 4, 5, 6];
+change.length = 8;
+// Endi change shunday bo'ladi => [ 1, 2, 3, 4, 5, 6, empty, empty ]
 
-// Arrays inside of an array are called "multidimensional arrays"
+// 2) Lengthni kamaytirish:
+let decrease = [1, 2, 3, 4, 5, 6];
+decrease.length = 4;
+console.log(decrease); // [ 1, 2, 3, 4 ] - qolgan elementlar o'chib ketadi.
 
-// Array comparison
-// comparing two arrays is always false
-console.log([0] == [0]);//false
-// Comparing to ptimitive
-console.log(Number([]));//0
-// That is why 
-console.log([] == 0);//true
+// Arrayni tozalashning eng oson yo'li: arr.length = 0;.
 
+// Array ichidagi Arraylar "multidimensional arrays" deyiladi.
 
+// Array comparison (Solishtirish)
+// Ikkita Arrayni solishtirish har doim false beradi:
+console.log([0] == [0]); // false
 
+// Primitive bilan solishtirganda:
+console.log(Number([])); // 0
+// Shuning uchun:
+console.log([] == 0); // true

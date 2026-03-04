@@ -1,82 +1,94 @@
-//To make something work after some time we use scheduling(setTimeout and setInterval)
-/////////////////////////////////////////////////////setTimeout///////////////////////////////////////////////////////
-//there are tow ways of using setTimeout
-//1)
+// Biror ishni ma'lum vaqtdan keyin bajarish uchun biz scheduling (rejalashtirish) - setTimeout va setInterval'dan foydalanamiz
+
+///////////////////////////////////////////////////// setTimeout ///////////////////////////////////////////////////////
+
+// setTimeout ishlatishning ikkita yo'li bor:
+// 1)
 function sayHi() {
   console.log("hi");
 }
-setTimeout(sayHi,5000)//showing hi after 5 seconds(5000ms == 5s)
-//2
-setTimeout(()=>{
+setTimeout(sayHi, 5000); // 5 soniyadan keyin "hi" chiqadi (5000ms == 5s)
+
+// 2)
+setTimeout(() => {
   console.log("hi");
-},5000)//showing hi after 5 seconds
+}, 5000); // 5 soniyadan keyin "hi" chiqadi
 
-//we can also us eit like new function(in a string format)
-// setTimeout('console.log("in a string")',5000)
-//but doing that is a bad idea
- 
-//here how it looks woth argumets
-function sayHiAgain(name,age) {
-  console.log(`hi again ${name} and ${age}`)
+// Shuningdek, uni yangi funksiya kabi (string formatida) ishlatish ham mumkin:
+// setTimeout('console.log("string ichida")', 5000)
+// Lekin bunday qilish yomon g'oya hisoblanadi
+
+// Argumentlar bilan ko'rinishi:
+function sayHiAgain(name, age) {
+  console.log(`hi yana ${name} va ${age}`);
 }
-setTimeout(sayHiAgain,5000,"samir",20)//hi again samir and 20
+setTimeout(sayHiAgain, 5000, "Temur", 20); // hi yana Temur va 20
 
-//it is preferable to use arrow functions
- let hello = setTimeout((name)=>{
-  console.log("heeee" + name);
-},5000,"samir")//heeeesamir
-///////////////////////////////////////////////////clearTimeout//////////////////////////////////////////////////////
-if(Math.random() < 0.5){
-  console.log("success");
-}else{
-  console.log("unsuccess");
-  clearTimeout(hello)
+// Arrow function'lardan foydalanish afzalroqdir
+let hello = setTimeout(
+  (name) => {
+    console.log("heeee " + name);
+  },
+  5000,
+  "Temur",
+); // heeee Temur
+
+/////////////////////////////////////////////////// clearTimeout //////////////////////////////////////////////////////
+
+if (Math.random() < 0.5) {
+  console.log("muvaffaqiyatli");
+} else {
+  console.log("muvaffaqiyatsiz");
+  clearTimeout(hello); // Taymerni bekor qilish
 }
-////////////////////////////////////////////////////setInterval///////////////////////////////////////////////////////
-//Does something infitnitively untill we stop it
- let sec = 5000
-let saved = setInterval((time)=>{
-  console.log(`this will be appearing each ${time} ms`);
-},sec,sec)
-setTimeout(()=>{
-  clearTimeout(saved)
-},10000)
 
-//Note we dont need to run both setTimeout and setInterval by wrapping it woth a variable and use it like function expression they run authomatically after we write the code, variable() incorrect
-/////////////////////////////////////////////////////nested setTimeout/////////////////////////////////////////////
-//There are two ways of runnig something regularly,setInterval and nested setTimeout(recursive setTimeout)
-//And using recursive setTimeout can be better for several reasons 
-//Examples
-let exam1 = setInterval(()=>{
+//////////////////////////////////////////////////// setInterval ///////////////////////////////////////////////////////
+
+// Biz to'xtatmagunimizcha biror ishni cheksiz takrorlaydi
+let sec = 5000;
+let saved = setInterval(
+  (time) => {
+    console.log(`bu har ${time} ms'da chiqib turadi`);
+  },
+  sec,
+  sec,
+);
+
+setTimeout(() => {
+  clearInterval(saved); // Intervalni to'xtatish
+}, 10000);
+
+// Eslatma: setTimeout va setInterval'ni o'zgaruvchiga o'rab, funksiya kabi ishga tushirish (variable()) shart emas, ular yozilishi bilanoq avtomatik ishlaydi
+
+///////////////////////////////////////////////////// nested setTimeout /////////////////////////////////////////////
+
+// Biror narsani muntazam ravishda ishga tushirishning ikki yo'li bor: setInterval va nested setTimeout (rekursiv setTimeout)
+// Va rekursiv setTimeout ishlatish bir qancha sabablarga ko'ra yaxshiroq bo'lishi mumkin
+
+// Misollar:
+let exam1 = setInterval(() => {
   console.log("Hello world");
-},2000)
+}, 2000);
 
 let exam2;
-
 function run() {
   console.log("hello");
-  exam2 = setTimeout(run, 2000);
+  exam2 = setTimeout(run, 2000); // Funksiya tugagach, o'zini qayta chaqiradi
 }
-
 exam2 = setTimeout(run, 2000);
-//we do this because if i had written let variable = function, it would have stopped only first function not second
 
-setInterval(()=>{
-  clearInterval(exam1)
-  clearTimeout(exam2)
-},5000)
+// Nima uchun rekursiv setTimeout yaxshiroq?
+// setInterval shunchaki: "ma'lum vaqtdan keyin ishni bajar" deydi. Agar funksiyaning o'zi uzoq vaqt ishlasa, setInterval kutib turmaydi va yangi funksiyani ham qo'shib yuboradi. Natijada xatoliklar yoki kutilmagan vaqt oralig'i yuzaga kelishi mumkin.
+// Rekursiv setTimeout esa funksiya to'liq tugashini kutadi va shundan keyingina keyingi taymerni boshlaydi.
 
-//So the reason that recursive setTimeout is better is that setInterval literaaly says: make something work after some time, however the duration of the function can be long, and if it is long setinterval will not wait for the end it will push the other function so because of that there can be some errors, for example real time can be either lower and higher than expacted one, while recursive setTimeout waits for the end of the function, setTimeout says wait some time after the function finishes.
-//setInterval => real time, we gave 1000ms despite the function finishes starts the other one appear
-//setTimeout(recursive) => real time after function ends working, we use to avoig bugs
+///////////////////////////////////////// garbage collection ////////////////// : 14]
 
-/////////////////////////////////////////garbage collection/////////////////////////////////////////////////////////
-//functions inside of setTimeout and setInterval are send to scheduler, scheduler is a inner js mechanism that will be holding the link of the function and  will not be giving it to the garbage collector untill the time of scheduler passes out
-//setInterval will be wotking untill clearInterval is written
-//but there are some side effects for example as functions inside of setTimeout and setInterval can access outer lexical environment this lexical environment will be existing untill garbage collector stops function from functioning, as the result of which lexical environment will take too much memory on pc. To prevet this from happening we dont need to use big objects inside of schedule functions, use only small parts of the object that we need, we need to always use clear interval if we need to stop
+// setTimeout va setInterval ichidagi funksiyalar "scheduler"ga yuboriladi. Scheduler — bu ichki mexanizm bo'lib, u funksiyaga bo'lgan havolani (link) ushlab turadi va vaqti kelmaguncha uni garbage collector'ga (xotirani tozalovchi) bermaydi.
+// Bu ba'zida xotira bilan bog'liq muammolarga olib kelishi mumkin (memory leak), chunki funksiya tashqi muhitdagi katta obyektlarni ushlab qoladi. Buni oldini olish uchun rejalashtirilgan funksiyalar ichida faqat kerakli kichik qismlardan foydalanish va kerak bo'lmaganda intervalni har doim tozalash (clear) lozim.
 
-///////////////////////////////////////////////setTimout with no delay////////////////////////////////////////////////
-//even if our code is 0ms it will be consoled after simple code because even inside this 0ms js checks the function that takes some time
+/////////////////////////////////////////////// setTimeout no delay ////////////////////////////////////////////////
 
-setTimeout(()=> console.log("exam is coming"))
-console.log("it will be showed first");
+// Hatto kechikish 0ms qilib belgilansa ham, u oddiy koddan keyin konsolga chiqadi, chunki JS bu vaqt ichida navbatni tekshiradi
+
+setTimeout(() => console.log("exam is coming"));
+console.log("bu birinchi bo'lib chiqadi"); // Avval oddiy kod, keyin 0ms taymer ishlaydi

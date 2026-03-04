@@ -1,115 +1,78 @@
-////////////////////////////////////////////////Var/////////////////////////////////////////////////////////////
-//At first glance var works exactly like let, however there are some differences
-//1)Var ingnores blocks of code, or var doesnt have block scope
-let exam = true
-if(exam){
- var hi = "Hello"
-} 
-console.log(hi);//Hello
-//It just ignores the curly braces
-//while let cant do that
-// if(exam){
-//   let my = "mine"
-// }
-// console.log(my);//error
+//////////////////////////////////////////////// Var /////////////////////////////////////////////////////////////
 
-//Even in for loop var ignores braces
+// Bir qarashda var xuddi let kabi ishlaydi, biroq ularning o'rtasida bir qancha farqlar bor:
+
+// 1) var kod bloklarini (block scope) e'tiborsiz qoldiradi
+let exam = true;
+if (exam) {
+  var hi = "Salom";
+}
+console.log(hi); // Salom
+// U shunchaki jingalak qavslarni ({}) e'tiborsiz qoldiradi.
+// let bilan bunday qilib bo'lmaydi, chunki let blok scope'ga ega.
+
+// Hatto for tsiklida ham var qavslarni e'tiborsiz qoldiradi:
 for (var index = 0; index < 10; index++) {
-  
+  // ...
 }
-console.log(index);//10
+console.log(index); // 10
 
-//however if we use var in function it will becaome a local variable for a function
-// function checking() {
-//   var check = "hello world"
-// }
-// console.log(check);//error
-
+// Biroq, agar biz var'ni funksiya ichida ishlatsak, u funksiya uchun mahalliy (local) o'zgaruvchiga aylanadi.
 function example() {
-  if(exam){
-    var functVar = "sam" 
+  if (exam) {
+    var functVar = "Temur";
   }
-  console.log(functVar);//sam
+  console.log(functVar); // Temur
 }
-example()
+example();
+// Funksiya ichidagi var'ga tashqaridan kirib bo'lmaydi.
 
-//So the reason why var is so specific is that in past there was no lexicalEnvironment
+// var'ning bunday o'ziga xos bo'lishiga sabab — o'tmishda Lexical Environment tushunchasi bo'lmaganidir.
 
-//2)Var can be declarated twice
-var user = "Me"
-var user = "them"
-var user = "hers"
-console.log(user);//hers
-//the same with let would be an error
+// 2) var'ni bir necha marta e'lon qilish mumkin
+var user = "Men";
+var user = "Ular";
+var user = "U (qiz)";
+console.log(user); // U (qiz)
+// let bilan bunday qilish xatolikka (error) olib keladi.
 
-//3) var can be used before its declaration
-//such behavior is called hoisting
+// 3) var o'zgaruvchisini e'lon qilishdan (declaration) oldin ishlatish mumkin
+// Bunday xatti-harakat "hoisting" (ko'tarilish) deb ataladi.
 function sayHi() {
-  phrase = "hi";
-
+  phrase = "salom";
   console.log(phrase);
-
-  var phrase;//hi
+  var phrase; // salom
 }
-sayHi(); 
-//so why is that?
-//Hoisting means that while creation process the variables without the value are coming to the top and being read first. For example this code:
-console.log(ok);//undefined,will explain later
-var ok = "guess"
-//javascript will see like this:
-var ok;
-console.log(ok);
-ok = "guess"
-//in this example as it was explained in the last topic, in cretion phase variables are read without values
-//so it is not only var that is read like this, let and const are the same, however both let and const will be located in tdz(temporal dead zone) it means that any usage of let or const before initialization will be an error while "var" is doesnt have tdz instead it will be undefined. This is bad because undefined could confuse people
-  function sayHello() {
-  phrase = "ih"; // (*)
+sayHi();
 
-  if (false) {
-    var phrase;
-  }
+// Nima uchun bunday?
+// Hoisting shuni anglatadiki, yaratilish jarayonida qiymat berilmagan o'zgaruvchilar eng yuqoriga chiqadi va birinchi bo'lib o'qiladi.
+// Masalan:
+console.log(ok); // undefined
+var ok = "taxmin";
 
-  console.log(phrase);//ih
-}
-sayHello();
-//the reason this code is working is that var is coming to the beginning and function looks like this:
- /*
- function sayHello() {
-  var phrase;
-  phrase = "ih"; // 
+// JavaScript buni quyidagicha ko'radi:
+// var ok;
+// console.log(ok);
+// ok = "taxmin";
 
-  if (false) {
-  var phrase => will come here after cretion phase
-  }
+// let va const ham tepaga ko'tariladi, lekin ular TDZ (Temporal Dead Zone) ichida bo'ladi.
+// Bu shuni anglatadiki, let yoki const'ni e'lon qilishdan oldin ishlatish xatolik beradi, var esa shunchaki "undefined" qaytaradi.
 
-  console.log(phrase);//ih
-}
-sayHello();
- */
-//Note var comes to the beginnig without = part, so var hello = "hello world", would be  var hello
-
-//IIFE=>Immediately-invoked function expressions
-//this method makes var to have block scope
-//so this is how it looks:
-(function() {
-
-  var message = "hi";
-
-  console.log(message);//hi
-
-})();//< == we need this () to make the function, it is like calling functions: hello(), and ()that cover is neede to say that this is expression not statement, we need because function declaration is a statement which do not support immediate invoke, unlike function expression, we dont need to cover the function to () only there are other methods also:
-/*
-(function() { ... })(); // стандартно
-(function() { ... }()); // тоже работает
-!function() { ... }();  // через оператор !
-+function() { ... }();  // через + превращаем в выражение
-*/
-var count = 10;
-
-(function() {
-  var count = 5; // это другая переменная!
-  console.log("Inside:", count);
+// IIFE => Immediately-Invoked Function Expressions
+// Bu usul var'ga blok scope berish uchun ishlatiladi (uni chegaralaydi).
+(function () {
+  var message = "salom";
+  console.log(message); // salom
 })();
 
+// Funksiyani darhol ishlatish uchun oxiriga () qavslar qo'yiladi.
+// Funksiyaning o'zini o'rab turgan qavslar esa bu deklaratsiya emas, balki ifoda (expression) ekanligini bildiradi.
+
+var count = 10;
+(function () {
+  var count = 5; // Bu boshqa o'zgaruvchi!
+  console.log("Inside:", count);
+})();
 console.log("Outside:", count);
-//in this example because we use IIFE we dont change the global variable, it just has inner lexical environment and doesnt have the outer one
+// IIFE ishlatganimiz sababli global o'zgaruvchi o'zgarmadi, chunki u ichki lexical environment'ga ega.
