@@ -1,4 +1,4 @@
-Ответ Gemini
+Ответ G
 Tushundim, do'st. Senior dasturchilar uslubida — ortiqcha gaplarsiz, mini
 
 📂 JavaScript-dokumentatsiyalari (Full Stack Guide)
