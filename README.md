@@ -1,5 +1,4 @@
 
-Tushundim
 📂 JavaScript-dokumentatsiyalari (Full Stack Guide)
 Ushbu repository JavaScript’ning barcha asosiy va advanced mavzulari bo‘yicha to‘liq dokumentatsiyani o‘z ichiga oladi. O‘rganish va loyihalarda qo'llash uchun optimallashtirilgan.
 
