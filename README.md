@@ -1,3 +1,3 @@
 Ushbu Fayl da Sizlar JavaScriptning Hamma Mavzularini Documentationlarini korishingiz ishlatishingiz va foydalanishingiz Mumkun
 
-Sizlarga 
+Sizlarga Faqat gina
