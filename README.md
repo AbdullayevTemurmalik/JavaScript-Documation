@@ -1,1 +1,1 @@
-Ushbu Fayl da Sizlar 
+Ushbu Fayl da Sizlar JavaScript 
