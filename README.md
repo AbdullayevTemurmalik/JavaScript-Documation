@@ -1,1 +1,1 @@
-Ushbu Fayl da Sizlar JavaScriptning Hamma Mavzularini Documentation 
+Ushbu Fayl da Sizlar JavaScriptning Hamma Mavzularini Documentationlarini 
