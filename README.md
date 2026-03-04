@@ -4,4 +4,4 @@ MUHIM ESLATMA !!!!!
 
 Buning uchun sizga faqat ingliz tilini bilish kifoya.
 
-chunki hamma dokumentatsiyalar ingiliz tilida 
+chunki hamma dokumentatsiyalar ingiliz tilida yozib qoyilgan 
